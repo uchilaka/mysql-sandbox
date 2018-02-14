@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  wp-mysql:
+    container_name: mysql-sandbox
+    ports:
+      - 3306:3306
+    image: mysql/mysql-server:5.7
+    environment:
+      # Test to see if double quotes are included in password - might be source of issue
+      MYSQL_ROOT_PASSWORD: B3efyCakes!
+    volumes:
+      #- ./data/mysql:/var/lib/mysql
+      - ./conf.d:/etc/mysql/conf.d
+    restart: unless-stopped
